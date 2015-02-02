@@ -28,9 +28,16 @@ public class WeatherProvider extends ContentProvider {
     // The URI Matcher used by this content provider.
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private WeatherDbHelper mOpenHelper;
+
+    private static final int WEATHER = 100;
+    private static final int WEATHER_WITH_LOCATION = 101;
+    private static final int WEATHER_WITH_LOCATION_AND_DATE = 102;
+    private static final int LOCATION = 300;
+    private static final int LOCATION_ID = 301;
+
     private static final SQLiteQueryBuilder sWeatherByLocationSettingQueryBuilder;
 
-    static {
+    static{
         sWeatherByLocationSettingQueryBuilder = new SQLiteQueryBuilder();
         sWeatherByLocationSettingQueryBuilder.setTables(
                 WeatherContract.WeatherEntry.TABLE_NAME + " INNER JOIN " +
@@ -38,15 +45,14 @@ public class WeatherProvider extends ContentProvider {
                         " ON " + WeatherContract.WeatherEntry.TABLE_NAME +
                         "." + WeatherContract.WeatherEntry.COLUMN_LOC_KEY +
                         " = " + WeatherContract.LocationEntry.TABLE_NAME +
-                        "." + WeatherContract.LocationEntry._ID
-        );
+                        "." + WeatherContract.LocationEntry._ID);
     }
 
     private static final String sLocationSettingSelection =
-            WeatherContract.LocationEntry.TABLE_NAME +
+            WeatherContract.LocationEntry.TABLE_NAME+
                     "." + WeatherContract.LocationEntry.COLUMN_LOCATION_SETTING + " = ? ";
     private static final String sLocationSettingWithStartDateSelection =
-            WeatherContract.LocationEntry.TABLE_NAME +
+            WeatherContract.LocationEntry.TABLE_NAME+
                     "." + WeatherContract.LocationEntry.COLUMN_LOCATION_SETTING + " = ? AND " +
                     WeatherContract.WeatherEntry.COLUMN_DATETEXT + " >= ? ";
 
@@ -75,11 +81,6 @@ public class WeatherProvider extends ContentProvider {
         );
     }
 
-    private static final int WEATHER = 100;
-    private static final int WEATHER_WITH_LOCATION = 101;
-    private static final int WEATHER_WITH_LOCATION_AND_DATE = 102;
-    private static final int LOCATION = 300;
-    private static final int LOCATION_ID = 301;
 
     private static UriMatcher buildUriMatcher() {
         // I know what you're thinking.  Why create a UriMatcher when you can use regular

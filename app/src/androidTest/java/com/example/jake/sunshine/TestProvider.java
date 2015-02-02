@@ -51,7 +51,7 @@ public class TestProvider extends AndroidTestCase {
         assertTrue(locationRowId != -1);
         Log.d(LOG_TAG, "New row id: " + locationRowId);
 
-        // Data's inserted.  IN THEORY.  Now pull soe out to stare at it and verify it made
+        // Data's inserted.  IN THEORY.  Now pull some out to stare at it and verify it made
         // the round trip.
 
         // A cursor is your primary interface to the query results.
@@ -84,17 +84,18 @@ public class TestProvider extends AndroidTestCase {
 
         // A cursor is your primary interface to the query results.
         Cursor weatherCursor = mContext.getContentResolver().query(
-                WeatherEntry.CONTENT_URI, // Table to Query
-                null, // leaving "columns" null just returns all the columns
+                WeatherEntry.CONTENT_URI,  // Table to Query
+                null, // leaving "columns" null just returns all the columns.
                 null, // cols for "where" clause
                 null, // values for "where" clause
-                null  // columns to group by
+                null // columns to group by
         );
 
         TestDb.validateCursor(weatherCursor, weatherValues);
 
+
         // Add the location values in with the weather data so that we can make
-        // sure that the join worked and we actually get all the values back.
+        // sure that the join worked and we actually get all the values back
         addAllContentValues(weatherValues, testValues);
 
         // Get the joined Weather and Location data
@@ -105,19 +106,17 @@ public class TestProvider extends AndroidTestCase {
                 null, // values for "where" clause
                 null  // sort order
         );
-
         TestDb.validateCursor(weatherCursor, weatherValues);
 
         // Get the joined Weather and Location data with a start date
         weatherCursor = mContext.getContentResolver().query(
                 WeatherEntry.buildWeatherLocationWithStartDate(
                         TestDb.TEST_LOCATION, TestDb.TEST_DATE),
-                null, // leaving "columns" null just returns all the columns
+                null, // leaving "columns" null just returns all the columns.
                 null, // cols for "where" clause
                 null, // values for "where" clause
                 null  // sort order
         );
-
         TestDb.validateCursor(weatherCursor, weatherValues);
 
         dbHelper.close();
@@ -154,7 +153,7 @@ public class TestProvider extends AndroidTestCase {
         assertEquals(LocationEntry.CONTENT_ITEM_TYPE, type);
     }
 
-    // The target api annotation is needed fo rhte call to keySet -- we wouldn't want
+    // The target api annotation is needed for the call to keySet -- we wouldn't want
     // to use this in our app, but in a test it's fine to assume a higher target.
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     void addAllContentValues(ContentValues destination, ContentValues source) {
