@@ -1,6 +1,4 @@
 # Sunshine
-Sunshine Android App from Udacity
-
 This will serve as a springboard for the application we (Shaun Kane and I) will be building to research non-visual interaction methods in mobile gaming/applications.
 
 # Influential Articles:
