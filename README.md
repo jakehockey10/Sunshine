@@ -4,6 +4,9 @@ This will serve as a springboard for the application we (Shaun Kane and I) will 
 # Influential Articles:
 - [Auditory Display Design for Exploration in Mobile Audio-Augmented Reality](http://ftp.dcs.glasgow.ac.uk/~stephen/papers/PUC_vazquezalvarezFinal2-revised.pdf)
 
+# Useful links that point forward:
+- [Documentation on using sensors](http://developer.android.com/guide/topics/sensors/index.html)
+
 # Android Studio
 Android Studio is being used to develop the application and provide an easy way to test and run the application in DEBUG mode.
 
