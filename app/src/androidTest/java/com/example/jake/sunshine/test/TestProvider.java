@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.jake.sunshine.test;
+package com.example.android.sunshine.app.test;
 
 import android.annotation.TargetApi;
 import android.content.ContentUris;
@@ -24,8 +24,8 @@ import android.os.Build;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
-import com.example.jake.sunshine.data.WeatherContract.LocationEntry;
-import com.example.jake.sunshine.data.WeatherContract.WeatherEntry;
+import com.example.android.sunshine.app.data.WeatherContract.LocationEntry;
+import com.example.android.sunshine.app.data.WeatherContract.WeatherEntry;
 
 public class TestProvider extends AndroidTestCase {
 
@@ -162,33 +162,33 @@ public class TestProvider extends AndroidTestCase {
     }
 
     public void testGetType() {
-        // content://com.example.jake.sunshine/weather/
+        // content://com.example.android.sunshine.app/weather/
         String type = mContext.getContentResolver().getType(WeatherEntry.CONTENT_URI);
-        // vnd.android.cursor.dir/com.example.jake.sunshine/weather
+        // vnd.android.cursor.dir/com.example.android.sunshine.app/weather
         assertEquals(WeatherEntry.CONTENT_TYPE, type);
 
         String testLocation = "94074";
-        // content://com.example.jake.sunshine/weather/94074
+        // content://com.example.android.sunshine.app/weather/94074
         type = mContext.getContentResolver().getType(
                 WeatherEntry.buildWeatherLocation(testLocation));
-        // vnd.android.cursor.dir/com.example.jake.sunshine/weather
+        // vnd.android.cursor.dir/com.example.android.sunshine.app/weather
         assertEquals(WeatherEntry.CONTENT_TYPE, type);
 
         String testDate = "20140612";
-        // content://com.example.jake.sunshine/weather/94074/20140612
+        // content://com.example.android.sunshine.app/weather/94074/20140612
         type = mContext.getContentResolver().getType(
                 WeatherEntry.buildWeatherLocationWithDate(testLocation, testDate));
-        // vnd.android.cursor.item/com.example.jake.sunshine/weather
+        // vnd.android.cursor.item/com.example.android.sunshine.app/weather
         assertEquals(WeatherEntry.CONTENT_ITEM_TYPE, type);
 
-        // content://com.example.jake.sunshine/location/
+        // content://com.example.android.sunshine.app/location/
         type = mContext.getContentResolver().getType(LocationEntry.CONTENT_URI);
-        // vnd.android.cursor.dir/com.example.jake.sunshine/location
+        // vnd.android.cursor.dir/com.example.android.sunshine.app/location
         assertEquals(LocationEntry.CONTENT_TYPE, type);
 
-        // content://com.example.jake.sunshine/location/1
+        // content://com.example.android.sunshine.app/location/1
         type = mContext.getContentResolver().getType(LocationEntry.buildLocationUri(1L));
-        // vnd.android.cursor.item/com.example.jake.sunshine/location
+        // vnd.android.cursor.item/com.example.android.sunshine.app/location
         assertEquals(LocationEntry.CONTENT_ITEM_TYPE, type);
     }
 
