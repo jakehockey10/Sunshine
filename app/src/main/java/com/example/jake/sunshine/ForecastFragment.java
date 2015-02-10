@@ -78,7 +78,6 @@ public class ForecastFragment extends Fragment implements LoaderCallbacks<Cursor
             LocationEntry.COLUMN_COORD_LONG
     };
 
-
     // These indices are tied to FORECAST_COLUMNS.  If FORECAST_COLUMNS changes, these
     // must change.
     public static final int COL_WEATHER_ID = 0;

@@ -110,5 +110,8 @@
 
     <!-- Strings related to Notification preference -->
     <string name="pref_last_notification">last_notification</string>
+    <string name="title_activity_sensor">SensorActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_sensors">Sensors</string>
 
 </resources>

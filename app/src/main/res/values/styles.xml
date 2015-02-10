@@ -24,4 +24,10 @@
         for two-pane layout -->
     </style>
 
+    <!-- Style for sensor listview -->
+    <style name="SensorListStyle">
+        <!-- Here it's a stub.  In screens of sufficient width, this style includes modifications
+        for two-pane layout -->
+    </style>
+
 </resources>

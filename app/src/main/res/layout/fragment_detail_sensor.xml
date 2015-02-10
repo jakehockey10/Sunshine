@@ -1,0 +1,28 @@
+<!-- TODO: change to be for sensor data instead of forecast/weather data-->
+
+
+
+<!-- Master layout. -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_gravity="left"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:fontFamily="sans-serif-condensed"
+            android:id="@+id/detail_sensor_textview"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:text="@string/hello_world"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -16,17 +16,12 @@
 package com.example.jake.sunshine;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.jake.sunshine.sync.SunshineSyncAdapter;
-
 
 public class MainActivity extends ActionBarActivity implements ForecastFragment.Callback {
 
@@ -48,7 +43,7 @@ public class MainActivity extends ActionBarActivity implements ForecastFragment.
             // fragment transaction.
             if (savedInstanceState == null) {
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.weather_detail_container, new DetailFragment())
+                        .replace(R.id.weather_detail_container, new WeatherDetailFragment())
                         .commit();
             }
         } else {
@@ -80,6 +75,9 @@ public class MainActivity extends ActionBarActivity implements ForecastFragment.
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
+        } else if (id == R.id.action_sensors) {
+            startActivity(new Intent(this, SensorsActivity.class));
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -92,17 +90,17 @@ public class MainActivity extends ActionBarActivity implements ForecastFragment.
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle args = new Bundle();
-            args.putString(DetailActivity.DATE_KEY, date);
+            args.putString(WeatherDetailActivity.DATE_KEY, date);
 
-            DetailFragment fragment = new DetailFragment();
+            WeatherDetailFragment fragment = new WeatherDetailFragment();
             fragment.setArguments(args);
 
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.weather_detail_container, fragment)
                     .commit();
         } else {
-            Intent intent = new Intent(this, DetailActivity.class)
-                    .putExtra(DetailActivity.DATE_KEY, date);
+            Intent intent = new Intent(this, WeatherDetailActivity.class)
+                    .putExtra(WeatherDetailActivity.DATE_KEY, date);
             startActivity(intent);
         }
     }

@@ -54,7 +54,6 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
     private static final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
     private static final int WEATHER_NOTIFICATION_ID = 3004;
 
-
     private static final String[] NOTIFY_WEATHER_PROJECTION = new String[] {
             WeatherEntry.COLUMN_WEATHER_ID,
             WeatherEntry.COLUMN_MAX_TEMP,
@@ -73,7 +72,8 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
     }
 
     @Override
-    public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
+    public void onPerformSync(
+            Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
         Log.d(LOG_TAG, "Starting sync");
         // Getting the zipcode to send to the API
         String locationQuery = Utility.getPreferredLocation(getContext());
@@ -265,6 +265,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
                 cVVector.toArray(cvArray);
                 getContext().getContentResolver().bulkInsert(WeatherEntry.CONTENT_URI, cvArray);
 
+                // Getting rid of any weather data in the database older than now.
                 Calendar cal = Calendar.getInstance(); //Get's a calendar object with the current time.
                 cal.add(Calendar.DATE, -1); //Signifies yesterday's date
                 String yesterdayDate = WeatherContract.getDbDateString(cal.getTime());
@@ -467,10 +468,10 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
         // If the password doesn't exist, the account doesn't exist
         if ( null == accountManager.getPassword(newAccount) ) {
 
-        /*
-         * Add the account and account type, no password or user data
-         * If successful, return the Account object, otherwise report an error.
-         */
+            /*
+             * Add the account and account type, no password or user data
+             * If successful, return the Account object, otherwise report an error.
+             */
             if (!accountManager.addAccountExplicitly(newAccount, "", null)) {
                 return null;
             }

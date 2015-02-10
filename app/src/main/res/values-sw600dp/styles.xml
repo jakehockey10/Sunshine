@@ -4,4 +4,8 @@
         <item name="android:choiceMode">singleChoice</item>
     </style>
 
+    <style name="SensorListStyle">
+        <item name="android:choiceMode">singleChoice</item>
+    </style>
+
 </resources>

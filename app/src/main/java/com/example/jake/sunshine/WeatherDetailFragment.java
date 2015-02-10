@@ -40,9 +40,9 @@ import com.example.jake.sunshine.data.WeatherContract.WeatherEntry;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class DetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class WeatherDetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final String LOG_TAG = DetailFragment.class.getSimpleName();
+    private static final String LOG_TAG = WeatherDetailFragment.class.getSimpleName();
 
     private static final String FORECAST_SHARE_HASHTAG = " #SunshineApp";
 
@@ -81,7 +81,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     private TextView mWindView;
     private TextView mPressureView;
 
-    public DetailFragment() {
+    public WeatherDetailFragment() {
         setHasOptionsMenu(true);
     }
 
@@ -97,14 +97,14 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
         Bundle arguments = getArguments();
         if (arguments != null) {
-            mDateStr = arguments.getString(DetailActivity.DATE_KEY);
+            mDateStr = arguments.getString(WeatherDetailActivity.DATE_KEY);
         }
 
         if (savedInstanceState != null) {
             mLocation = savedInstanceState.getString(LOCATION_KEY);
         }
 
-        View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_detail_weather, container, false);
         mIconView = (ImageView) rootView.findViewById(R.id.detail_icon);
         mDateView = (TextView) rootView.findViewById(R.id.detail_date_textview);
         mFriendlyDateView = (TextView) rootView.findViewById(R.id.detail_day_textview);
@@ -121,7 +121,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     public void onResume() {
         super.onResume();
         Bundle arguments = getArguments();
-        if (arguments != null && arguments.containsKey(DetailActivity.DATE_KEY) &&
+        if (arguments != null && arguments.containsKey(WeatherDetailActivity.DATE_KEY) &&
                 mLocation != null &&
                 !mLocation.equals(Utility.getPreferredLocation(getActivity()))) {
             getLoaderManager().restartLoader(DETAIL_LOADER, null, this);
@@ -131,7 +131,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        inflater.inflate(R.menu.detailfragment, menu);
+        inflater.inflate(R.menu.weatherdetailfragment, menu);
 
         // Retrieve the share menu item
         MenuItem menuItem = menu.findItem(R.id.action_share);
@@ -161,7 +161,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         }
 
         Bundle arguments = getArguments();
-        if (arguments != null && arguments.containsKey(DetailActivity.DATE_KEY)) {
+        if (arguments != null && arguments.containsKey(WeatherDetailActivity.DATE_KEY)) {
             getLoaderManager().initLoader(DETAIL_LOADER, null, this);
         }
     }
