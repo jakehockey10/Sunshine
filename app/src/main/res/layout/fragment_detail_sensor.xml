@@ -8,6 +8,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/fragment_sensor_linear_layout"
         android:gravity="center_vertical"
         android:layout_gravity="left"
         android:layout_height="wrap_content"

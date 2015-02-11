@@ -15,7 +15,6 @@ public class SensorDetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_sensor);
 
-        if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             String sensor = getIntent().getStringExtra(SENSOR_KEY);
@@ -29,7 +28,6 @@ public class SensorDetailActivity extends ActionBarActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.sensor_detail_container, fragment)
                     .commit();
-        }
     }
 
     @Override

@@ -272,6 +272,55 @@ public class Utility {
         return -1;
     }
 
+    public static int getSensorTypeFromSensorString(String type) {
+        switch (type) {
+            case Sensor.STRING_TYPE_ACCELEROMETER:
+                return Sensor.TYPE_ACCELEROMETER;
+            case Sensor.STRING_TYPE_AMBIENT_TEMPERATURE:
+                return Sensor.TYPE_AMBIENT_TEMPERATURE;
+            case Sensor.STRING_TYPE_GAME_ROTATION_VECTOR:
+                return Sensor.TYPE_GAME_ROTATION_VECTOR;
+            case Sensor.STRING_TYPE_GEOMAGNETIC_ROTATION_VECTOR:
+                return Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR;
+            case Sensor.STRING_TYPE_GRAVITY:
+                return Sensor.TYPE_GRAVITY;
+            case Sensor.STRING_TYPE_GYROSCOPE:
+                return Sensor.TYPE_GYROSCOPE;
+            case Sensor.STRING_TYPE_GYROSCOPE_UNCALIBRATED:
+                return Sensor.TYPE_GYROSCOPE_UNCALIBRATED;
+            case Sensor.STRING_TYPE_HEART_RATE:
+                return Sensor.TYPE_HEART_RATE;
+            case Sensor.STRING_TYPE_LIGHT:
+                return Sensor.TYPE_LIGHT;
+            case Sensor.STRING_TYPE_LINEAR_ACCELERATION:
+                return Sensor.TYPE_LINEAR_ACCELERATION;
+            case Sensor.STRING_TYPE_MAGNETIC_FIELD:
+                return Sensor.TYPE_MAGNETIC_FIELD;
+            case Sensor.STRING_TYPE_MAGNETIC_FIELD_UNCALIBRATED:
+                return Sensor.TYPE_MAGNETIC_FIELD_UNCALIBRATED;
+            case Sensor.STRING_TYPE_ORIENTATION:
+                return Sensor.TYPE_ORIENTATION;
+            case Sensor.STRING_TYPE_PRESSURE:
+                return Sensor.TYPE_PRESSURE;
+            case Sensor.STRING_TYPE_PROXIMITY:
+                return Sensor.TYPE_PROXIMITY;
+            case Sensor.STRING_TYPE_RELATIVE_HUMIDITY:
+                return Sensor.TYPE_RELATIVE_HUMIDITY;
+            case Sensor.STRING_TYPE_ROTATION_VECTOR:
+                return Sensor.TYPE_ROTATION_VECTOR;
+            case Sensor.STRING_TYPE_SIGNIFICANT_MOTION:
+                return Sensor.TYPE_SIGNIFICANT_MOTION;
+            case Sensor.STRING_TYPE_STEP_COUNTER:
+                return Sensor.TYPE_STEP_COUNTER;
+            case Sensor.STRING_TYPE_STEP_DETECTOR:
+                return Sensor.TYPE_STEP_DETECTOR;
+            case Sensor.STRING_TYPE_TEMPERATURE:
+                return Sensor.TYPE_TEMPERATURE;
+            default:
+                return -1;
+        }
+    }
+
     public static String getSensorTypeStringFromInt(int type) {
         switch (type) {
             case Sensor.TYPE_ACCELEROMETER:
@@ -318,6 +367,60 @@ public class Utility {
                 return Sensor.STRING_TYPE_TEMPERATURE;
             default:
                 return "";
+        }
+    }
+
+    public static int getValueCountForSensor(String type) {
+        int typeInt = getSensorTypeFromSensorString(type);
+        return getValueCountForSensor(typeInt);
+    }
+
+    public static int getValueCountForSensor(int type) {
+        switch (type) {
+            case Sensor.TYPE_ACCELEROMETER:
+                return 3;
+            case Sensor.TYPE_AMBIENT_TEMPERATURE:
+                return 1;
+            case Sensor.TYPE_GAME_ROTATION_VECTOR:
+                return 3;
+            case Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR:
+                return 3;
+            case Sensor.TYPE_GRAVITY:
+                return 3;
+            case Sensor.TYPE_GYROSCOPE:
+                return 3;
+            case Sensor.TYPE_GYROSCOPE_UNCALIBRATED:
+                return 6;
+            case Sensor.TYPE_HEART_RATE:
+                return -1;
+            case Sensor.TYPE_LIGHT:
+                return 1;
+            case Sensor.TYPE_LINEAR_ACCELERATION:
+                return 3;
+            case Sensor.TYPE_MAGNETIC_FIELD:
+                return 3;
+            case Sensor.TYPE_MAGNETIC_FIELD_UNCALIBRATED:
+                return 6;
+            case Sensor.TYPE_ORIENTATION: // Deprecated Android 2.2 (API Level 8).
+                return 3;
+            case Sensor.TYPE_PRESSURE:
+                return 1;
+            case Sensor.TYPE_PROXIMITY:
+                return 1;
+            case Sensor.TYPE_RELATIVE_HUMIDITY:
+                return 1;
+            case Sensor.TYPE_ROTATION_VECTOR:
+                return 4;
+            case Sensor.TYPE_SIGNIFICANT_MOTION:
+                return 0;
+            case Sensor.TYPE_STEP_COUNTER:
+                return 1;
+            case Sensor.TYPE_STEP_DETECTOR:
+                return 0;
+            case Sensor.TYPE_TEMPERATURE: // Deprecated in Android 4.0 (API Level 14).
+                return 1;
+            default:
+                return -1;
         }
     }
 }
