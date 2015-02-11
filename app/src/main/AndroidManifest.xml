@@ -33,6 +33,22 @@
                 android:value="com.example.jake.sunshine.MainActivity" />
         </activity>
         <activity
+            android:name=".SensorsActivity"
+            android:label="@string/title_activity_sensors"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jake.sunshine.MainActivity" />
+        </activity>
+        <activity
+            android:name=".SensorDetailActivity"
+            android:label="@string/title_activity_sensor_detail"
+            android:parentActivityName=".SensorsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jake.sunshine.SensorsActivity" />
+        </activity>
+        <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".MainActivity" >
@@ -70,11 +86,6 @@
                 android:name="android.content.SyncAdapter"
                 android:resource="@xml/syncadapter" />
         </service>
-
-        <activity
-            android:name=".SensorsActivity"
-            android:label="@string/title_activity_sensor" >
-        </activity>
     </application>
 
 </manifest>

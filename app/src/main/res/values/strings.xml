@@ -19,6 +19,8 @@
     <string name="action_refresh" translatable="false">Refresh</string>
 
     <string name="title_activity_detail">Details</string>
+    <string name="title_activity_sensors">Sensors</string>
+    <string name="title_activity_sensor_detail">Sensor Details</string>
     <string name="title_activity_settings">Settings</string>
 
     <!-- Label for the location preference [CHAR LIMIT=30] -->
