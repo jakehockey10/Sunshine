@@ -1,7 +1,3 @@
-<!-- TODO: change to be for sensor data instead of forecast/weather data-->
-
-
-
 <!-- Master layout. -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"

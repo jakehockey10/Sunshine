@@ -1,14 +1,18 @@
 package com.example.jake.sunshine;
 
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.ShareActionProvider;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -26,6 +30,8 @@ public class SensorDetailFragment extends Fragment implements SensorEventListene
     private Sensor mSensor;
     private View mRootView;
     private TextView[] mTextViews;
+
+    private ShareActionProvider mShareActionProvider;
 
     public SensorDetailFragment() {
         setHasOptionsMenu(true);
@@ -106,7 +112,23 @@ public class SensorDetailFragment extends Fragment implements SensorEventListene
         // Inflate the menu; this adds items to the action bar if it is present.
         inflater.inflate(R.menu.sensordetailfragment, menu);
 
-        super.onCreateOptionsMenu(menu, inflater);
+        // Retrieve the share menu item
+        MenuItem menuItem = menu.findItem(R.id.action_share);
+
+        // Get the provider and hold onto it to set/change the share intent.
+        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
+
+        if (mShareActionProvider != null) {
+            mShareActionProvider.setShareIntent(createShareSensorIntent());
+        }
+    }
+
+    private Intent createShareSensorIntent() {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "Using my " + mSensorName + " sensor on my Android device!");
+        return shareIntent;
     }
 
     @Override
@@ -114,7 +136,7 @@ public class SensorDetailFragment extends Fragment implements SensorEventListene
         super.onActivityCreated(savedInstanceState);
 
         if (savedInstanceState != null) {
-            // see WeatherDetailFragment.java
+
         }
 
         Bundle arguments = getArguments();
