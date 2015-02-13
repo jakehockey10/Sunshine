@@ -7,6 +7,8 @@ This will serve as a springboard for the application we (Shaun Kane and I) will 
 # Useful links that point forward:
 - [Documentation on using sensors](http://developer.android.com/guide/topics/sensors/index.html)
 - [Android Arsenal (free and paid libraries)](https://android-arsenal.com/)
+- [Sensor Kinetics Pro](https://play.google.com/store/apps/details?id=com.innoventions.sensorkineticspro)
+  - This costs $2.99, but it might do everything that I'm trying to do with this first phase of the app.  We want to visualize the data, and see how different interactions effect it.  More discussion is needed.
 
 # Android Studio
 Android Studio is being used to develop the application and provide an easy way to test and run the application in DEBUG mode.
