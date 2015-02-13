@@ -57,7 +57,15 @@ public class SensorDetailFragment extends Fragment implements SensorEventListene
             // do stuff with savedInstanceState (see WeatherDetailFragment.java)
         }
 
+        // Figure out what sensor is supposed to show.
         mSensorManager = (SensorManager) getActivity().getSystemService(getActivity().SENSOR_SERVICE);
+        if (mSensorName == null) {
+            // Set a default if the SensorDetailFragment is being created
+            // without the user having selected a sensor yet (tablets have
+            // two panes for the SensorsActivity and the SensorDetailActivity
+            // (with their respective fragments.
+            mSensorName = mSensorManager.getSensorList(Sensor.TYPE_ALL).get(0).getName();
+        }
         mSensor = mSensorManager.getDefaultSensor(Utility.getSensorTypeFromSensorString(mSensorName));
 
         mRootView = inflater.inflate(R.layout.fragment_detail_sensor, container, false);
