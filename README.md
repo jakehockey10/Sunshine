@@ -11,6 +11,8 @@ This will serve as a springboard for the application we (Shaun Kane and I) will 
   - This costs $2.99, but it might do everything that I'm trying to do with this first phase of the app.  We want to visualize the data, and see how different interactions effect it.  More discussion is needed.
 - [The physics of an object sliding down an inclined plane](http://www.physicsclassroom.com/class/vectors/Lesson-3/Inclined-Planes)
 - [Android Sensor Fusion Tutorial and related article](http://www.thousand-thoughts.com/category/articles/)
+- [Android TextToSpeech](http://developer.android.com/reference/android/speech/tts/TextToSpeech.html)
+- [Android SpeechToText tutorial](http://www.androidhive.info/2014/07/android-speech-to-text-tutorial/)
 
 # Android Studio
 Android Studio is being used to develop the application and provide an easy way to test and run the application in DEBUG mode.
