@@ -1,12 +1,17 @@
 package com.example.jake.sunshine;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 
 
 public class SensorsActivity extends ActionBarActivity implements SensorFragment.Callback {
@@ -15,14 +20,13 @@ public class SensorsActivity extends ActionBarActivity implements SensorFragment
 
     private boolean mTwoPane;
 
-    private SensorManager mSensorManager;
-    private Sensor mLight;
-
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor);
         if (findViewById(R.id.sensor_detail_container) != null) {
+
             // The detail container view will be present only in the large-screen layouts
             // (res/layout-sw600dp).  If this view is present, then the activity should be
             // in two-pane mode.
@@ -31,16 +35,14 @@ public class SensorsActivity extends ActionBarActivity implements SensorFragment
             // adding or replacing the detail fragment using a
             // fragment transaction.
             if (savedInstanceState == null) {
+                final SensorDetailFragment fragment = new SensorDetailFragment();
                 getSupportFragmentManager().beginTransaction()
-                        .add(R.id.sensor_detail_container, new SensorDetailFragment())
+                        .add(R.id.sensor_detail_container, fragment)
                         .commit();
             }
         } else {
             mTwoPane = false;
         }
-
-        SensorFragment sensorFragment = ((SensorFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.fragment_sensor));
     }
 
     @Override

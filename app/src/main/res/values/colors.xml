@@ -9,4 +9,8 @@
     <color name="sunshine_light_blue">#ff64c2f4</color>
     <color name="sunshine_blue">#ff1ca8f4</color>
 
+    <color name="black_overlay">#66000000</color>
+    <color name="bg_gradient_start">#31244e</color>
+    <color name="bg_gradient_end">#6b394c</color>
+
 </resources>

@@ -15,8 +15,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+
+import java.util.ArrayList;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -24,6 +32,7 @@ import android.widget.TextView;
 public class SensorDetailFragment extends Fragment implements SensorEventListener {
 
     private static final String LOG_TAG = SensorDetailFragment.class.getSimpleName();
+
     private TextView mNameView;
     private String mSensorName;
     private SensorManager mSensorManager;
@@ -32,6 +41,9 @@ public class SensorDetailFragment extends Fragment implements SensorEventListene
     private TextView[] mTextViews;
 
     private ShareActionProvider mShareActionProvider;
+    private LineChart mChart;
+    private ArrayList<ArrayList<Entry>> mVals;
+    private static final int VALS_MAX = 100;
 
     public SensorDetailFragment() {
         setHasOptionsMenu(true);
@@ -96,9 +108,25 @@ public class SensorDetailFragment extends Fragment implements SensorEventListene
 
         // Add TextView for accuracy
         mTextViews[i-1] = new TextView(getActivity());
-        linearLayout.addView(mTextViews[i-1]);
+        linearLayout.addView(mTextViews[i - 1]);
 
         return mRootView;
+    }
+
+    public void initializeChartObjects() {
+        LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.fragment_sensor_linear_layout);
+        mChart = new LineChart(getActivity());
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, 
+                ViewGroup.LayoutParams.MATCH_PARENT);
+        mChart.setLayoutParams(params);
+        linearLayout.addView(mChart);
+//        mChart = (LineChart) getActivity().findViewById(R.id.chart);
+        int valueCountForSensor = Utility.getValueCountForSensor(mSensor.getType());
+        mVals = new ArrayList<ArrayList<Entry>>(valueCountForSensor);
+        for (int i = 0; i < valueCountForSensor; i++) {
+            mVals.add(new ArrayList<Entry>());
+        }
     }
 
     @Override
@@ -116,15 +144,30 @@ public class SensorDetailFragment extends Fragment implements SensorEventListene
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_add_chart) {
+            initializeChartObjects();
+            return true;
+        }
+        
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
         inflater.inflate(R.menu.sensordetailfragment, menu);
 
         // Retrieve the share menu item
-        MenuItem menuItem = menu.findItem(R.id.action_share);
+        MenuItem shareMenuItem = menu.findItem(R.id.action_share);
+        
+        // Retrieve the chart menu item
+        MenuItem chartMenuItem = menu.findItem(R.id.action_add_chart);
+        
 
         // Get the provider and hold onto it to set/change the share intent.
-        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
+        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(shareMenuItem);
 
         if (mShareActionProvider != null) {
             mShareActionProvider.setShareIntent(createShareSensorIntent());
@@ -156,6 +199,25 @@ public class SensorDetailFragment extends Fragment implements SensorEventListene
         // Accuracy is handled in the onAccuracy Changed ( - 1 )
         for (int i = 0; i < mTextViews.length - 1; i++) {
             mTextViews[i].setText("Value " + i + ": " + event.values[i]);
+        }
+
+        // Populate the chart
+        if (mVals != null) {
+            ArrayList<LineDataSet> lineDataSets = new ArrayList<LineDataSet>();
+            int valueCountForSensor = Utility.getValueCountForSensor(mSensor.getType());
+            for (int i = 0; i < valueCountForSensor; i++) {
+                if (mVals.get(i).size() >= VALS_MAX) {
+                    mVals.get(i).remove(0);
+                }
+                // casting event.timestamp to an int from a long could maybe suffer
+                // if timestamp isn't properly set.
+                mVals.get(i).add(new Entry(event.values[i], (int) event.timestamp));
+                // TODO: Give better labels to these data sets.
+                lineDataSets.add(new LineDataSet(mVals.get(i), "Value " + i + 1));
+            }
+
+            LineData data = new LineData(new ArrayList<String>(lineDataSets.size()), lineDataSets);
+            mChart.setData(data);
         }
     }
 

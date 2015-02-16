@@ -77,6 +77,8 @@ public class MainActivity extends ActionBarActivity implements ForecastFragment.
         } else if (id == R.id.action_sensors) {
             startActivity(new Intent(this, SensorsActivity.class));
             return true;
+        } else if (id == R.id.action_balance) {
+            startActivity(new Intent(this, BalanceActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

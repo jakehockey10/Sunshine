@@ -10,6 +10,11 @@
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
 
+    <!-- Tell the system this app requires OpenGL ES 3.1. -->
+    <uses-feature
+        android:glEsVersion="0x00030001"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -86,6 +91,25 @@
                 android:name="android.content.SyncAdapter"
                 android:resource="@xml/syncadapter" />
         </service>
+
+        <activity
+            android:name=".BalanceActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_balance"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/FullscreenTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jake.sunshine.MainActivity" />
+        </activity>
+        <activity
+            android:name=".SpeechActivity"
+            android:label="@string/title_activity_speech"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jake.sunshine.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

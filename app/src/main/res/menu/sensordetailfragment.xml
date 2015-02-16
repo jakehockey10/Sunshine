@@ -4,6 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_share"
         android:title="@string/action_share"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         app:actionProviderClass="android.support.v7.widget.ShareActionProvider" />
+    <item android:id="@+id/action_add_chart"
+        android:title="Add Chart"
+        app:showAsAction="ifRoom" />
 </menu>

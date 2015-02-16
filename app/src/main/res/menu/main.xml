@@ -10,4 +10,8 @@
         android:title="@string/action_sensors"
         android:orderInCategory="100"
         app:showAsAction="never" />
+    <item android:id="@+id/action_balance"
+        android:title="@string/balance"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
 </menu>
