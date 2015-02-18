@@ -36,6 +36,7 @@ import android.widget.TextView;
 
 import com.example.jake.sunshine.data.WeatherContract;
 import com.example.jake.sunshine.data.WeatherContract.WeatherEntry;
+import com.example.jake.sunshine.util.Utility;
 
 /**
  * A placeholder fragment containing a simple view.

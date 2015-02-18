@@ -79,6 +79,10 @@ public class MainActivity extends ActionBarActivity implements ForecastFragment.
             return true;
         } else if (id == R.id.action_balance) {
             startActivity(new Intent(this, BalanceActivity.class));
+        } else if (id == R.id.action_speech_to_text) {
+            startActivity(new Intent(this, SpeechToTextActivity.class));
+        } else if (id == R.id.action_text_to_speech) {
+            startActivity(new Intent(this, TextToSpeechActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

@@ -25,7 +25,7 @@ import android.util.Log;
 
 import com.example.jake.sunshine.MainActivity;
 import com.example.jake.sunshine.R;
-import com.example.jake.sunshine.Utility;
+import com.example.jake.sunshine.util.Utility;
 import com.example.jake.sunshine.data.WeatherContract;
 import com.example.jake.sunshine.data.WeatherContract.WeatherEntry;
 import com.example.jake.sunshine.data.WeatherContract.LocationEntry;

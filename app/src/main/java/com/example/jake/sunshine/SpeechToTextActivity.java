@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 
-public class SpeechActivity extends ActionBarActivity {
+public class SpeechToTextActivity extends ActionBarActivity {
     
     private TextView txtSpeechInput;
     private ImageButton btnSpeak;
@@ -25,13 +25,13 @@ public class SpeechActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_speech);
+        setContentView(R.layout.activity_speech_to_text);
         
         txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
         btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
         
         // hide the action bar
-        getActionBar().hide();
+        getSupportActionBar().hide();
         
         btnSpeak.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +42,7 @@ public class SpeechActivity extends ActionBarActivity {
     }
 
     /**
-     * Showing google speech input dialog 
+     * Showing google speech_to_text input dialog
      */
     private void promptSpeechInput() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -78,7 +78,7 @@ public class SpeechActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_speech, menu);
+        getMenuInflater().inflate(R.menu.speech_to_text, menu);
         return true;
     }
 

@@ -10,6 +10,12 @@
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
 
+    <!-- Permissions for speech_to_text activity -->
+    <!-- <uses-permission android:name="android.permission.READ_SOCIAL_STREAM" /> -->
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <!-- Tell the system this app requires OpenGL ES 3.1. -->
     <uses-feature
         android:glEsVersion="0x00030001"
@@ -103,12 +109,17 @@
                 android:value="com.example.jake.sunshine.MainActivity" />
         </activity>
         <activity
-            android:name=".SpeechActivity"
+            android:name=".SpeechToTextActivity"
             android:label="@string/title_activity_speech"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.jake.sunshine.MainActivity" />
+        </activity>
+        <activity
+            android:name=".TextToSpeechActivity"
+            android:label="@string/title_activity_text_to_speech" 
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

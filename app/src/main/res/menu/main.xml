@@ -11,7 +11,15 @@
         android:orderInCategory="100"
         app:showAsAction="never" />
     <item android:id="@+id/action_balance"
-        android:title="@string/balance"
+        android:title="@string/action_balance"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item android:id="@+id/action_speech_to_text"
+        android:title="@string/action_speech_to_text"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item android:id="@+id/action_text_to_speech"
+        android:title="@string/text_to_speech"
         android:orderInCategory="100"
         app:showAsAction="never" />
 </menu>

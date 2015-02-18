@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.jake.sunshine.util.Utility;
+
 import java.util.ArrayList;
 import java.util.List;
 

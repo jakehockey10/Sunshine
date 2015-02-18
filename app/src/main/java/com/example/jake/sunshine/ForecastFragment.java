@@ -16,11 +16,9 @@
 package com.example.jake.sunshine;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -39,6 +37,7 @@ import com.example.jake.sunshine.data.WeatherContract;
 import com.example.jake.sunshine.data.WeatherContract.LocationEntry;
 import com.example.jake.sunshine.data.WeatherContract.WeatherEntry;
 import com.example.jake.sunshine.sync.SunshineSyncAdapter;
+import com.example.jake.sunshine.util.Utility;
 
 import java.util.Date;
 
