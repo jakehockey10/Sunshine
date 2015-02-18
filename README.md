@@ -13,6 +13,7 @@ This will serve as a springboard for the application we (Shaun Kane and I) will 
 - [Android Sensor Fusion Tutorial and related article](http://www.thousand-thoughts.com/category/articles/)
 - [Android TextToSpeech](http://developer.android.com/reference/android/speech/tts/TextToSpeech.html)
 - [Android SpeechToText tutorial](http://www.androidhive.info/2014/07/android-speech-to-text-tutorial/)
+- [Android TextToSpeech tutorial](http://code.tutsplus.com/tutorials/use-text-to-speech-on-android-to-read-out-incoming-messages--cms-22524)
 
 # Android Studio
 Android Studio is being used to develop the application and provide an easy way to test and run the application in DEBUG mode.
