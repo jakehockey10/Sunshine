@@ -23,6 +23,10 @@ import android.preference.PreferenceManager;
 import com.example.jake.sunshine.R;
 import com.example.jake.sunshine.data.WeatherContract;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -423,5 +427,16 @@ public class Utility {
             default:
                 return -1;
         }
+    }
+    
+    public static String convertInputeStreamToString(InputStream inputStream) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) != null)
+            result += line;
+
+        inputStream.close();
+        return result;
     }
 }

@@ -136,5 +136,9 @@
     <string name="stop_speaking">Okay!  I will stay silent now.</string>
     <string name="title_activity_text_to_speech">TextToSpeechActivity</string>
     <string name="text_to_speech">Text to Speech</string>
+    <string name="title_activity_augmented_reality">AugmentedRealityActivity</string>
+    <string name="action_add_chart">Add Chart</string>
+    <string name="action_send_data">Send Data</string>
+    <string name="action_save_data">Save Data</string>
 
 </resources>

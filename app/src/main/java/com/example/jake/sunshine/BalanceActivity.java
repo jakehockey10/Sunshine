@@ -493,7 +493,7 @@ public class BalanceActivity extends Activity implements SensorEventListener {
                     + oneMinusCoeff * accMagOrientation[2];
             
             // overwrite gyro matrix and orientation with fused orientation
-            // to comensate gyro drift
+            // to compensate gyro drift
             gyroMatrix = getRotationMatrixFromOrientation(fusedOrientation);
             System.arraycopy(fusedOrientation, 0, gyroOrientation, 0, 3);
         }
@@ -519,20 +519,20 @@ public class BalanceActivity extends Activity implements SensorEventListener {
         public boolean onTouchEvent(MotionEvent event) {
             int action = event.getActionMasked();
             switch (action) {
-                case MotionEvent.ACTION_DOWN:
-                    mDownX = event.getX();
-                    mDownY = event.getY();
-                    return true;
-                case MotionEvent.ACTION_UP:
-                    return true;
-                case MotionEvent.ACTION_MOVE:
-                    float mX = event.getX();
-                    float mY = event.getY();
-                    mRenderer.mLightX += (mX-mDownX)/10;
-                    mRenderer.mLightY -= (mY-mDownY)/10;
-                    mDownX = mX;
-                    mDownY = mY;
-                    return true;
+//                case MotionEvent.ACTION_DOWN:
+//                    mDownX = event.getX();
+//                    mDownY = event.getY();
+//                    return true;
+//                case MotionEvent.ACTION_UP:
+//                    return true;
+//                case MotionEvent.ACTION_MOVE:
+//                    float mX = event.getX();
+//                    float mY = event.getY();
+//                    mRenderer.mLightX += (mX-mDownX)/10;
+//                    mRenderer.mLightY -= (mY-mDownY)/10;
+//                    mDownX = mX;
+//                    mDownY = mY;
+//                    return true;
                 default:
                     return super.onTouchEvent(event);
             }
@@ -564,6 +564,16 @@ public class BalanceActivity extends Activity implements SensorEventListener {
             // To clear the screen and the depth buffer
             gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
             // Reset the modelview matrix
+            
+            
+            
+            
+            gl.glMatrixMode(GL10.GL_MODELVIEW);
+            
+            
+            
+            
+            
             gl.glLoadIdentity();
 
             gl.glEnable(GL10.GL_LIGHTING);
@@ -584,8 +594,23 @@ public class BalanceActivity extends Activity implements SensorEventListener {
             mat_posiBuf.put(light_position);
             mat_posiBuf.position(0);
             gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, mat_posiBuf);
-
-            gl.glTranslatef(0.0f, 0.0f, -3.0f);
+            
+            
+            
+            
+            float[] rotationMatrix = new float[16];
+//            SensorManager.getRotationMatrixFromVector(rotationMatrix, gyroOrientation);
+            gl.glRotatef((float) (gyroOrientation[2] * 180 / Math.PI), 0, 1, 0);
+            gl.glRotatef((float) (gyroOrientation[1] * 180 / Math.PI), 1, 0, 0);
+            gl.glRotatef((float) (gyroOrientation[0] * 180 / Math.PI), 0, 0, 1);
+//            gl.glMultMatrixf(rotationMatrix, 0);
+//            gl.glTranslatef(0, 2, 0);
+            
+            
+            
+            
+            
+            gl.glTranslatef(0.0f, 0.0f, -6.0f);
             mSphere.draw(gl);
         }
 
@@ -655,7 +680,7 @@ public class BalanceActivity extends Activity implements SensorEventListener {
         
         public void draw(GL10 gl) {
 
-        }        
+        }
     }
 
     // Calculation of spherical vertex
