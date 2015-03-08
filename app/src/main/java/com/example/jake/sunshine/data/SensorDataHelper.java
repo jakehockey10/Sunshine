@@ -16,7 +16,7 @@ public class SensorDataHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_NAME = "table_sensor_data";
     public static final String COL_ID = "_id";
-    public static final String COL_SESSION_ID = "session_id"
+    public static final String COL_SESSION_ID = "session_id";
     public static final String COL_NAME = "name";
     public static final String COL_TIMESTAMP = "timestamp";
     public static final String COL_VALUE = "value";
