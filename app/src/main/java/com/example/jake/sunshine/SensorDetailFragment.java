@@ -2,7 +2,9 @@ package com.example.jake.sunshine;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -85,6 +87,8 @@ public class SensorDetailFragment extends Fragment implements SensorEventListene
     
     private ArrayList<SensorEvent> mSensorEvents;
 
+    private static final String SESSION_ID = "SessionID";
+
     public SensorDetailFragment() {
         setHasOptionsMenu(true);
     }
@@ -149,6 +153,11 @@ public class SensorDetailFragment extends Fragment implements SensorEventListene
         // Add TextView for accuracy
         mTextViews[i-1] = new TextView(getActivity());
         linearLayout.addView(mTextViews[i - 1]);
+
+        // Restore preferences
+        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        int launchCount = preferences.getInt("launchCount", 0);
+        preferences.edit().putInt("launchCount", ++launchCount).commit();
 
         return mRootView;
     }
@@ -310,6 +319,9 @@ public class SensorDetailFragment extends Fragment implements SensorEventListene
                 String value = Arrays.toString(event.values);
                 long timestamp = (new Date()).getTime() + (event.timestamp - System.nanoTime()) / 100000L;
                 ContentValues values = new ContentValues();
+                SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+                int launchCount = preferences.getInt("launchCount", 0);
+                values.put(SensorDataHelper.COL_SESSION_ID, launchCount);
                 values.put(SensorDataHelper.COL_ACCURACY, event.accuracy);
                 values.put(SensorDataHelper.COL_NAME, mSensorName);
                 // TODO: get the email from the user
