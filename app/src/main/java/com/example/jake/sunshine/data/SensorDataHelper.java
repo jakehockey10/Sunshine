@@ -12,7 +12,7 @@ public class SensorDataHelper extends SQLiteOpenHelper {
     private static final String DEBUG_TAG = "SensorDataHelper";
 
     private static final String DATABASE_NAME = "sensor_data.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public static final String TABLE_NAME = "table_sensor_data";
     public static final String COL_ID = "_id";
@@ -25,7 +25,7 @@ public class SensorDataHelper extends SQLiteOpenHelper {
     
     private static final String DB_SCHEMA = "CREATE TABLE " + TABLE_NAME + "("
             + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COL_SESSION_ID + " INTEGER FOREIGN KEY, "
+            + COL_SESSION_ID + " INTEGER, "
             + COL_NAME + " STRING, "
             + COL_TIMESTAMP + " INTEGER NOT NULL, "
             + COL_VALUE + " REAL, "
@@ -44,7 +44,7 @@ public class SensorDataHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.w(DEBUG_TAG, "Warning: Dropping all tables; data migration not supported");
-        db.execSQL("DROP TABEL IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 }

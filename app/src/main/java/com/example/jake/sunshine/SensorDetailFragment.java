@@ -362,7 +362,6 @@ public class SensorDetailFragment extends Fragment implements SensorEventListene
             String result = "";
             Cursor cursor = getActivity().getContentResolver().query(SensorDataProvider.CONTENT_URI, null, null, null, null);
 
-            JSONArray data = new JSONArray();
             cursor.moveToFirst();
             while(!cursor.isAfterLast()){
                 JSONObject rowObject = new JSONObject();
@@ -370,6 +369,7 @@ public class SensorDetailFragment extends Fragment implements SensorEventListene
 
                 try {
                     innerObject.put("accuracy", parseInt(cursor.getString(cursor.getColumnIndex(SensorDataHelper.COL_ACCURACY))));
+                    innerObject.put("session_id", parseInt(cursor.getString(cursor.getColumnIndex(SensorDataHelper.COL_SESSION_ID))));
                     innerObject.put("sensor", cursor.getString(cursor.getColumnIndex(SensorDataHelper.COL_NAME)));
                     innerObject.put("email", cursor.getString(cursor.getColumnIndex(SensorDataHelper.COL_EMAIL)));
                     innerObject.put("timestamp", parseLong(cursor.getString(cursor.getColumnIndex(SensorDataHelper.COL_TIMESTAMP))));
